@@ -35,4 +35,4 @@ such as river levels, soil moisture, terrain and real-time weather data.
 
 ## Author
 
-Samriddhi Srivastava
+Samriddhi, somya,  shivendra, Tanish, sanjay
