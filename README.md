@@ -1,121 +1,155 @@
-# Rainfall-Based Flood Risk Prediction
+# 🌧️ Rainfall-Based Flood Risk Prediction
 
-A machine-learning project that studies historical rainfall patterns in Kerala and classifies years with unusually high monsoon rainfall.
+A machine learning project that uses historical rainfall data to classify the risk of unusually high rainfall and potential flood conditions.
 
-## Project idea
+## 📌 Project Overview
 
-The project follows a simple pipeline:
+This project analyzes historical monthly rainfall patterns and uses a Random Forest machine learning model to classify rainfall conditions into:
 
-Historical rainfall data → feature engineering → high-rainfall-risk classification → machine learning → evaluation → risk prediction.
+- 🟢 Normal Flood Risk
+- 🔴 High Flood Risk
 
-This project is inspired by the general idea of rainfall-based flood classification, but the implementation is independently structured and uses a public rainfall dataset.
+The model uses monthly rainfall values from January to December as input features.
 
-## Dataset
+## 🎯 Objective
 
-**Source:** Government of India Open Government Data (OGD) Platform / India Meteorological Department (IMD).
+The main objective is to develop a machine-learning-based system that analyzes rainfall patterns and provides an early indication of potential high flood-risk conditions.
 
-Dataset: **Sub-Divisional Monthly Rainfall from 1901 to 2017**.
+## 📊 Dataset
 
-The dataset contains monthly rainfall observations for Indian meteorological subdivisions. This project filters the dataset for Kerala.
+**Source:** Government of India Open Government Data (OGD) Platform / India Meteorological Department (IMD)
 
-The downloaded dataset is stored as:
+**Dataset:** Sub-Divisional Monthly Rainfall from 1901 to 2017
 
-```text
-data/rainfall_data.csv
-```
+The dataset contains historical monthly rainfall observations for Indian meteorological subdivisions.
 
-## Target definition
+For this project, the dataset was filtered for **Kerala**.
 
-This is an educational rainfall-risk proxy, not an official flood label.
+## ⚙️ Project Workflow
 
-The model marks the historical years in the **top 25% of Kerala's JJAS (June–September) rainfall distribution** as:
+Historical Rainfall Data  
+↓  
+Data Cleaning  
+↓  
+Feature Engineering  
+↓  
+Flood-Risk Classification  
+↓  
+Random Forest Model  
+↓  
+Model Evaluation  
+↓  
+Rainfall-Based Prediction
 
-- `0` → normal rainfall-risk class
-- `1` → higher rainfall-risk class
+## 🤖 Machine Learning Model
 
-Using a percentile rather than copying a fixed threshold makes the target dependent on the historical distribution of the selected dataset.
+The project uses the **Random Forest Classifier**.
 
-## Features
+### Input Features
 
-The model uses:
+The model uses rainfall values for all 12 months:
 
-- May rainfall
-- June + July rainfall
-- July + August rainfall
-- August + September rainfall
-- May-to-June rainfall change
-- Monsoon rainfall variability
-- June's share of JJAS rainfall
+- January
+- February
+- March
+- April
+- May
+- June
+- July
+- August
+- September
+- October
+- November
+- December
 
-## Models
+### Output
 
-Two models are compared:
+**0 → Normal Flood Risk**
 
-1. Logistic Regression
-2. Random Forest
+**1 → High Flood Risk**
 
-The better-performing model on the chronological test period is selected.
+## 📈 Model Evaluation
 
-## Evaluation
-
-The project reports:
+The model was evaluated using:
 
 - Accuracy
 - Precision
 - Recall
-- F1-score
-- 5-fold cross-validation accuracy
-- Confusion matrix
+- F1-Score
+- Confusion Matrix
 
-It also generates:
+The Random Forest model achieved approximately **79% accuracy** on the test dataset.
 
-- `outputs/rainfall_trend.png`
-- `outputs/confusion_matrix.png`
-- `outputs/feature_importance.png` when Random Forest is selected
+## 🔍 Feature Importance
 
-## Installation
+Feature-importance analysis was performed to identify which months contributed most to the model's classification.
 
-```bash
-pip install -r requirements.txt
-```
+The analysis showed that **July rainfall was one of the most influential features** in predicting high-risk conditions.
 
-## Run
+## 🧪 Example Prediction
 
-From the project root:
+Users can enter monthly rainfall values and receive a flood-risk prediction.
 
-```bash
-python src/flood_prediction.py
-```
+Example:
 
-## Project structure
+January: 50 mm  
+February: 60 mm  
+March: 70 mm  
+April: 200 mm  
+May: 250 mm  
+June: 500 mm  
+July: 1000 mm  
+August: 800 mm  
+September: 400 mm  
+October: 200 mm  
+November: 100 mm  
+December: 50 mm
 
-```text
+The model provides a predicted flood-risk classification and the probability of high-risk conditions.
+
+## 🛠️ Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Google Colab
+- GitHub
+
+## 📁 Project Structure
+
 rainfall-flood-prediction/
-│
-├── data/
-│   └── rainfall_data.csv
-│
-├── src/
-│   └── flood_prediction.py
-│
-├── outputs/
-│
-├── README.md
+
+├── data/  
+├── src/  
+├── Flood_Prediction_Project.ipynb  
+├── README.md  
 └── requirements.txt
-```
 
-## Important limitation
+## 🚀 How to Run
 
-The model does **not** predict real-time floods.
+1. Clone this repository.
+2. Open `Flood_Prediction_Project.ipynb`.
+3. Open the notebook in Google Colab or Jupyter Notebook.
+4. Install the required libraries.
+5. Run the cells sequentially.
+6. Enter monthly rainfall values when prompted.
+7. View the predicted flood-risk classification.
 
-Monthly rainfall alone cannot capture all factors involved in actual flooding, including river discharge, soil saturation, drainage capacity, terrain, reservoir levels, localized cloudbursts, and short-duration rainfall intensity.
+## ⚠️ Important Note
 
-Therefore, the output should be interpreted as a **historical high-rainfall risk classification**, not an emergency warning system.
+This project is an academic machine-learning demonstration and should not be considered an official flood-warning system.
 
-## Attribution
+Actual flood prediction requires additional factors such as river levels, soil moisture, drainage conditions, topography, weather forecasts and real-time rainfall data.
 
-Dataset source:
+## 👩‍💻 Author
 
-Government of India Open Government Data (OGD) Platform / India Meteorological Department (IMD).
+**Samriddhi Srivastava**
 
-The project is an independent implementation created for educational and portfolio purposes. The dataset is used under its public-data availability, with attribution to the original government source.
+GitHub: **samriddhi2605**
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star!
